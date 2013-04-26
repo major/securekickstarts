@@ -23,7 +23,7 @@ network --onboot yes --device eth0 --bootproto dhcp --ipv6 auto
 rootpw qwerty
 
 # CIS 4.7
-firewall --enabled ssh
+firewall --enabled --ssh
 
 # CIS 6.3.1
 authconfig --enableshadow --passalgo=sha512
