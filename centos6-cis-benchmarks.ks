@@ -261,14 +261,21 @@ echo "Banner /etc/ssh/sshd_banner" >> /etc/ssh/sshd_config
 
 # CIS 6.3.2
 sed -i 's/password.+requisite.+pam_cracklib.so/password required pam_cracklib.so try_first_pass retry=3 minlen=14,dcredit=-1,ucredit=-1,ocredit=-1 lcredit=-1/' /etc/pam.d/system-auth
-
 # CIS 6.3.3
 sed -i -e '/pam_cracklib.so/{:a;n;/^$/!ba;i\password    requisite     pam_passwdqc.so min=disabled,disabled,16,12,8' -e '}' /etc/pam.d/system-auth
-
 # CIS 6.3.6
 sed -i 's/^\(password.*sufficient.*pam_unix.so.*\)$/\1 remember=5/' /etc/pam.d/system-auth
-
 # CIS 6.5
 sed -i 's/^#\(auth.*required.*pam_wheel.so.*\)$/\1/' /etc/pam.d/su
+
+# CIS 7.1.1-7.1.3
+sed -i 's/^PASS_MAX_DAYS.*$/PASS_MAX_DAYS 90/' /etc/login.defs
+sed -i 's/^PASS_MIN_DAYS.*$/PASS_MIN_DAYS 7/' /etc/login.defs
+sed -i 's/^PASS_WARN_AGE.*$/PASS_WARN_AGE 7/' /etc/login.defs
+
+# CIS 8.1
+echo "Authorized uses only. All activity may be monitored and reported." > /etc/motd
+echo "Authorized uses only. All activity may be monitored and reported." > /etc/issue
+echo "Authorized uses only. All activity may be monitored and reported." > /etc/issue.net
 
 %end
