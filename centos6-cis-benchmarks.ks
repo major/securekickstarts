@@ -15,7 +15,7 @@
 #   limitations under the License.
 #
 install
-url --url=http://192.168.250.30/centos6/
+url --url=http://mirrors.kernel.org/centos/6/os/x86_64/
 text
 lang en_US.UTF-8
 keyboard us
