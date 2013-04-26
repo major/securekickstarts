@@ -1,3 +1,19 @@
+#!/usr/bin/env python
+#
+# Copyright 2013 Major Hayden
+#
+#   Licensed under the Apache License, Version 2.0 (the "License");
+#   you may not use this file except in compliance with the License.
+#   You may obtain a copy of the License at
+#
+#       http://www.apache.org/licenses/LICENSE-2.0
+#
+#   Unless required by applicable law or agreed to in writing, software
+#   distributed under the License is distributed on an "AS IS" BASIS,
+#   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#   See the License for the specific language governing permissions and
+#   limitations under the License.
+#
 install
 url --url=http://192.168.250.30/centos6/
 text
@@ -39,24 +55,24 @@ reboot
 %packages
 @core
 setroubleshoot-server
-aide						# CIS 1.3.2
-selinux-policy-targeted 	# CIS 1.4.3
--setroublsehoot				# CIS 1.4.4
--mcstrans					# CIS 1.4.5
--telnet-server				# CIS 2.1.1
--telnet 					# CIS 2.1.2
--rsh-server					# CIS 2.1.3
--rsh 						# CIS 2.1.4
--ypbind						# CIS 2.1.5
--ypserv						# CIS 2.1.6
--tftp						# CIS 2.1.7
--tftp-server				# CIS 2.1.8
--talk-server				# CIS 2.1.10
--xinetd						# CIS 2.1.11
--@"X Window System"			# CIS 3.2
--dhcp						# CIS 3.5
-ntp							# CIS 3.6
-postfix 					# CIS 3.16
+aide                        # CIS 1.3.2
+selinux-policy-targeted     # CIS 1.4.3
+-setroublsehoot             # CIS 1.4.4
+-mcstrans                   # CIS 1.4.5
+-telnet-server              # CIS 2.1.1
+-telnet                     # CIS 2.1.2
+-rsh-server                 # CIS 2.1.3
+-rsh                        # CIS 2.1.4
+-ypbind                     # CIS 2.1.5
+-ypserv                     # CIS 2.1.6
+-tftp                       # CIS 2.1.7
+-tftp-server                # CIS 2.1.8
+-talk-server                # CIS 2.1.10
+-xinetd                     # CIS 2.1.11
+-@"X Window System"         # CIS 3.2
+-dhcp                       # CIS 3.5
+ntp                         # CIS 3.6
+postfix                     # CIS 3.16
 
 %post --log=/root/postinstall.log
 
@@ -64,7 +80,7 @@ postfix 					# CIS 3.16
 # /etc/fstab
 echo "" && "# CIS Benchmark Adjustments" >> /etc/fstab
 # CIS 1.1.6
-echo "/tmp		/var/tmp	none 	bind	0 0" >> /etc/fstab
+echo "/tmp      /var/tmp    none    bind    0 0" >> /etc/fstab
 # CIS 1.1.14-1.1.16
 awk '$2~"^/dev/shm$"{$4="nodev,noexec,nosuid"}1' OFS="\t" /etc/fstab >> /tmp/fstab
 mv /tmp/fstab /etc/fstab
