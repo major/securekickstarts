@@ -85,7 +85,7 @@ pam_passwdqc                # CIS 6.3.3
 
 ###############################################################################
 # /etc/fstab
-echo "" && "# CIS Benchmark Adjustments" >> /etc/fstab
+echo -e "\n# CIS Benchmark Adjustments" >> /etc/fstab
 # CIS 1.1.6
 echo "/tmp      /var/tmp    none    bind    0 0" >> /etc/fstab
 # CIS 1.1.14-1.1.16
@@ -201,11 +201,12 @@ cat << 'EOF' >> /etc/audit/audit.rules
 EOF
 
 # CIS 5.2.12
-echo "" && "# CIS 5.2.12" >> /etc/audit/audit.rules
+echo -e "\n# CIS 5.2.12" >> /etc/audit/audit.rules
 find PART -xdev \( -perm -4000 -o -perm -2000 \) -type f | awk '{print "-a always,exit -F path=" $1 " -F perm=x -F auid>=500 -F auid!=4294967295 -k privileged" }' >> /etc/audit/audit.rules
 
 # CIS 5.2.18
-echo "" && "# CIS 5.2.18" && "-e 2" >> /etc/audit/audit.rules
+echo -e "\n# CIS 5.2.18"
+echo "-e 2" >> /etc/audit/audit.rules
 
 # CIS 2.1.12
 chkconfig chargen-dgram off
@@ -223,7 +224,8 @@ chkconfig echo-stream off
 chkconfig tcpmux-server off
 
 # CIS 3.1
-echo "# CIS Benchmarks" && "umask 027" >> /etc/sysconfig/init
+echo "\n# CIS Benchmarks" 
+echo "umask 027" >> /etc/sysconfig/init
 
 # CIS 3.3
 chkconfig avahi-daemon off
@@ -249,14 +251,14 @@ sed -i 's/^.*MaxAuthTries.*$/MaxAuthTries 4/' /etc/ssh/sshd_config
 # CIS 6.2.8
 sed -i 's/^.*PermitRootLogin.*$/PermitRootLogin no/' /etc/ssh/sshd_config
 # CIS 6.2.11
-echo "" && "# CIS Benchmarks" && "# CIS 6.2.12" >> /etc/ssh/sshd_config
+echo -e "\n# CIS Benchmarks\n# CIS 6.2.12" >> /etc/ssh/sshd_config
 echo "Ciphers aes128-ctr,aes192-ctr,aes256-ctr" >> /etc/ssh/sshd_config 
 # CIS 6.2.12
 sed -i 's/^.*ClientAliveInterval.*$/ClientAliveInterval 300/' /etc/ssh/sshd_config
 sed -i 's/^.*ClientAliveCountMax.*$/ClientAliveCountMax 0/' /etc/ssh/sshd_config
 # CIS 6.2.14
 echo "Unauthorized access is prohibited." > /etc/ssh/sshd_banner
-echo "" && "# CIS 6.2.14" >> /etc/ssh/sshd_config
+echo -e "\n# CIS 6.2.14" >> /etc/ssh/sshd_config
 echo "Banner /etc/ssh/sshd_banner" >> /etc/ssh/sshd_config 
 
 # CIS 6.3.2
