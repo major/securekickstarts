@@ -243,11 +243,12 @@ chkconfig auditd on
 chkconfig crond on
 
 # CIS 6.2.4
-sed -i 's/^.*X11Forwarding.*$/X11Forwarding no/' /etc/ssh/sshd_config
+sed -i 's/^#X11Forwarding no$/X11Forwarding no/' /etc/ssh/sshd_config
+sed -i '/^X11Forwarding yes$/d' /etc/ssh/sshd_config
 # CIS 6.2.5
 sed -i 's/^.*MaxAuthTries.*$/MaxAuthTries 4/' /etc/ssh/sshd_config
 # CIS 6.2.8
-sed -i 's/^.*PermitRootLogin.*$/PermitRootLogin no/' /etc/ssh/sshd_config
+sed -i 's/^#PermitRootLogin.*$/PermitRootLogin no/' /etc/ssh/sshd_config
 # CIS 6.2.11
 echo "" && "# CIS Benchmarks" && "# CIS 6.2.12" >> /etc/ssh/sshd_config
 echo "Ciphers aes128-ctr,aes192-ctr,aes256-ctr" >> /etc/ssh/sshd_config 
