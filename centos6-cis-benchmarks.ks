@@ -243,7 +243,8 @@ chkconfig auditd on
 chkconfig crond on
 
 # CIS 6.2.4
-sed -i 's/^.*X11Forwarding.*$/X11Forwarding no/' /etc/ssh/sshd_config
+sed -i 's/^#X11Forwarding no$/X11Forwarding no/' /etc/ssh/sshd_config
+sed -i '/^X11Forwarding yes$/d' /etc/ssh/sshd_config
 # CIS 6.2.5
 sed -i 's/^.*MaxAuthTries.*$/MaxAuthTries 4/' /etc/ssh/sshd_config
 # CIS 6.2.8
