@@ -158,7 +158,7 @@ cat << 'EOF' >> /etc/audit/audit.rules
 # CIS 5.2.8
 -w /var/log/faillog -p wa -k logins
 -w /var/log/lastlog -p wa -k logins
--w /var/log/tallylog -p -wa -k logins
+-w /var/log/tallylog -p wa -k logins
 
 # CIS 5.2.9
 -w /var/run/utmp -p wa -k session
@@ -197,7 +197,8 @@ cat << 'EOF' >> /etc/audit/audit.rules
 -w /sbin/insmod -p x -k modules
 -w /sbin/rmmod -p x -k modules
 -w /sbin/modprobe -p x -k modules
--a always,exit arch=b64 -S init_module -S delete_module -k modules
+-a always,exit -F arch=b64 -S init_module -S delete_module -k modules
+-a always,exit -F arch=b32 -S init_module -S delete_module -k modules
 EOF
 
 # CIS 5.2.12
