@@ -61,7 +61,7 @@ reboot
 setroubleshoot-server
 aide                        # CIS 1.3.2
 selinux-policy-targeted     # CIS 1.4.3
--setroublsehoot             # CIS 1.4.4
+-setroubleshoot             # CIS 1.4.4
 -mcstrans                   # CIS 1.4.5
 -telnet-server              # CIS 2.1.1
 -telnet                     # CIS 2.1.2
